@@ -12,8 +12,8 @@ require("./model/book");
 const Book = mongoose.model("Book");
 
 // connect
-mongoose.connect("mongodb://localhost:27017", () => {
-  console.log("MongoDb connected.");
+mongoose.connect("mongodb://localhost:27017/booksservice", () => {
+  console.log("MongoDb connected to booksservice!");
 });
 
 app.get("/", (req, res) => {
