@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 //model
 mongoose.model("Book", {
-  // title,author,numberPages,publisher
+  // title, author, numberPages, publisher
   title: {
     type: String,
     required: true,

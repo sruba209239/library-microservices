@@ -5,11 +5,11 @@ const bodyParser = require("body-parser");
 const app = express();
 const mongoose = require("mongoose");
 
+app.use(bodyParser.json());
+
 // model
 require("./model/book");
 const Book = mongoose.model("Book");
-
-app.use(bodyParser.json());
 
 // connect
 mongoose.connect("mongodb://localhost:27017", () => {
@@ -70,6 +70,33 @@ app.get("/book/:id", (req, res) => {
       if (error) {
         throw error;
       }
+    });
+});
+
+//modify a book data
+app.put("/book/:id", (req, res) => {
+  Book.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, doc) => {
+    console.log("err: ", err, "doc: ", doc);
+    if (err) {
+      res.status(404).send("No record found to update!");
+    }
+    res.status(200).json(doc);
+  });
+});
+
+app.delete("/book/:id", (req, res) => {
+  Book.findByIdAndDelete(req.params.id)
+    .then((book) => {
+      console.log(book);
+      if (!book) {
+        res
+          .status(404)
+          .send(`No record with id ${req.params.id} found to delete`);
+      }
+      res.status(204).end();
+    })
+    .catch((err) => {
+      if (err) throw err;
     });
 });
 
