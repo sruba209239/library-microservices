@@ -9,6 +9,7 @@
     "mongoose": "^6.8.3"
   },
   "scripts": {
+    "start": "nodemon books.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "sruba mohapatra",
