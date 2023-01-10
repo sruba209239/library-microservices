@@ -38,8 +38,8 @@ app.post("/customer", (req, res) => {
 // get all customers
 app.get("/customers", (req, res) => {
   Customer.find()
-    .then((books) => {
-      res.status(200).json(books);
+    .then((customers) => {
+      res.status(200).json(customers);
     })
     .catch((err) => {
       if (err) {
